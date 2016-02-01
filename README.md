@@ -69,9 +69,21 @@ upload file:
     `$ARG0 file jmp:/data/home`
 upload file to default folder:  
     `$ARG0 file jmp`
+##db.sh
+mysql single sql execute tool.
+##dbs.sh
+mysql batch sql execute tool.
 
 
-
+#dependency
+lib
+    mklib
+        ~/bin/data/servers.dat
+            bauth
+                scps
+    ~/bin/data/db.dat
+        db.sh
+        dbs.sh
 
 
 
