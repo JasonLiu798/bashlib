@@ -1,0 +1,96 @@
+#!/bin/bash
+#name  ip port user passwd
+#0     1  2    3    4
+. $UBIN/lib.sh
+
+#constants
+SEP=:
+#usage
+function usage()
+{
+echo "usage:
+	$ARG0 [host]:[uploadfile_path] [localfile_path]
+	$ARG0 [localfile_path] [host]:[downloadfile_path]
+example:
+	download file: $ARG0 jmp:/data/home/file localfile
+	download file: $ARG0 jmp:/data/home/file
+	upload file:   $ARG0 file jmp:/data/home
+	upload file to default folder:  $ARG0 file jmp"
+}
+
+if [ $# -gt 2 -o $# -lt 1 ]; then
+        echo "$ARG0 must have one parameter,no more than tow parameter!"; usage; exit
+fi
+
+A1C=`contain $1 $SEP`
+if [ "$2" != "" ]; then
+	A2C=`contain $2 $SEP`
+fi
+#no one contain $SEP
+#if [ "$A1C" = "" -a "$A2C" = "" ]; then
+#        echo "$1 or $2 format error,one must contain $SEP "
+#        usage
+#        exit;
+#fi
+
+#both contain,error
+if [ "$A1C" != "" -a "$A2C" != "" ];then
+        echo "$1 or $2 format error,only one contain $SEP "; usage; exit
+fi
+
+if [ "$A1C" != "" ];then #arg1 contain SEP,download
+        METHOD=$DOWN
+        UP_F=$1
+	if [ "$2" != "" ];then
+	        LOCAL_F=$2
+	fi
+else # upload
+        METHOD=$UP
+        UP_F=$2
+        LOCAL_F=$1
+fi
+
+SRV=`echo $UP_F|awk -F: '{print $1}'`
+SRV_FILE=`echo $UP_F|awk -F: '{print $2}'`
+echo "srv $SRV , srv file $SRV_FILE"
+
+
+CHK=`cat $SRVFILE |awk '{if($1~/^'"$SRV"'$/)print $2}'|wc -l`
+if [ "$CHK" != "1" ]; then
+	echo "$0 ,no server match $SRV ,add $SRV to $SRVFILE "; usage; exit $FAIL;
+fi
+
+parse_server $SRV IP PORT SUSER SPASS
+if [ "$?" = "$FAIL" ]; then
+	echo "parse server file fail"; usage; exit $FAIL;
+fi
+
+#SRVINFO=`cat $SRVFILE|grep $SRV`
+echo "Server:$SRV, IP $IP"
+
+RES=0
+if [ "$METHOD" == "$UP" ]; then
+	FILE_NAME=`get_filename $LOCAL_F`
+	#echo "file name $FILE_NAME"
+	if [ "$SRV_FILE" == "" ]; then
+    		SRV_FILE=$DFTUPATH/$FILE_NAME
+	else
+		SRV_FILE=$SRV_FILE/$FILE_NAME
+	fi
+	#UP_F=${UP_F}/${FILE_NAME}
+	#echo "up file $SRV_FILE"
+	set -x
+	scp -P $PORT $LOCAL_F $SUSER@$IP:$SRV_FILE
+	RES=$?
+elif [ "$METHOD" == "$DOWN" ]; then
+	if [ "$LOCAL_F" = "" ];then
+		LOCAL_F=`get_filename $SRV_FILE`
+	fi
+	echo filename $LOCAL_F
+	set -x
+	scp -P $PORT $SUSER@$IP:$SRV_FILE $LOCAL_F
+	RES=$?
+fi
+exit $RES
+
+

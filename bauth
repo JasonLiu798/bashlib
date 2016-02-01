@@ -1,0 +1,25 @@
+#!/bin/bash
+. $BLIB/lib.sh
+#name  ip port user passwd
+#0     1  2    3    4
+
+cat $SRVFILE|while read line
+do
+	#echo $line
+	resisempty=`isempty $line`
+	if [ "$resisempty" = "true" ]; then
+		continue
+	fi
+	declare -a params=($line)
+	echo "IP ${params[1]} PORT ${params[2]} USER ${params[3]} PORT ${params[4]}"
+	expect -c "set timeout 30
+		spawn ssh-copy-id -p ${params[2]} ${params[3]}@${params[1]}
+                expect {
+                          \"(yes/no)?\" {send \"yes\r\";exp_continue}
+                          \"password:\" {send \"${params[4]}\r\";exp_continue}
+                       }
+        "
+done
+
+
+
