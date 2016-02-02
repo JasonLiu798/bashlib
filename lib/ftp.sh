@@ -48,7 +48,7 @@ if [ $# -lt 2 ]; then
 fi
 METHOD=$1
 FILE=$2
-echo "`date +%Y-%m-%d %H:%M:%S` FTP $METHOD $FILE"
+
 HOST="10.185.234.139"
 USER="ftpuser"
 PASS="Xxzx2013@)!#"
@@ -58,5 +58,7 @@ lftp <<EOF
 open ftp://$USER:$PASS@$HOST
 $METHOD -o $FILE
 EOF
-echo "`date +%Y-%m-%d %H:%M:%S` FTP END"
+
 aaa
+#echo "`date +%Y-%m-%d %H:%M:%S` FTP $METHOD $FILE"
+#echo "`date +%Y-%m-%d %H:%M:%S` FTP END"

@@ -18,19 +18,26 @@ mkdir $TMPDIR
 
 set -x
 cp $UBIN/*.sh $TMPDIR
+#server tool
 cp $SHP/share/srv/*.sh $TMPDIR
 set +x
 
-for file in `ls -A $SHP/share`
+for shfile in `ls -A $SHP/share`
 do
-    if [ -f $file ];then
+    filepathname=$SHP/share/$shfile
+    if [ -f $filepathname ];then
         set -x
-        cp $SHP/share/$file $TMPDIR
+        cp $filepathname $TMPDIR/$shfile
         set +x
     fi
 done
 
 rm $TMP/srv.tar.gz
 set -x
-tar zpcvf $TMP/srv.tar.gz $BASHRC $TMPDIR
+cd /tmp
+tar zpcvf srv.tar.gz bin .bashrc
+rm -rf bin
+rm -rf .bashrc
 set +x
+
+#scpb -u srv.tar.gz
