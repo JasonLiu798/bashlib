@@ -1,0 +1,3 @@
+#!/bin/bash
+SEPLINE="--------------------------------"
+echo "${SEPLINE}$1${SEPLINE}"

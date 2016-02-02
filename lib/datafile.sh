@@ -59,27 +59,26 @@ echo $line
 
 function parse_server()
 {
-#$1 profile $2=ip $3=port $4=user $5 password
+#$1=filename $2 profile $3=ip $4=port $5=user $6 password
 #dp113 192.168.143.113 22 work work
 #0     1               2  3    4
-local arr=(`getline $SRVFILE $1`)
+local arr=(`getline $1 $2`)
 if [ "${arr[0]}" = "$FAIL" ]; then
 	return $FAIL
 fi
 #echo "srvinfo $SRVINFO"
-eval $2="${arr[1]}"
-eval $3="${arr[2]}"
-eval $4="${arr[3]}"
-eval $5='${arr[4]}'
+eval $3="${arr[1]}"
+eval $4="${arr[2]}"
+eval $5="${arr[3]}"
+eval $6='${arr[4]}'
 return 0
 }
 #set -x
-:<< aaa
-set -x
-parse_server dm118 IP PORT SUSER SPASS
+!<<aa
+parse_server /d/yp/project/shell/bin/data/srv_ol.dat 9 IP PORT SUSER SPASS
 echo $?
 echo "ip $IP,port $PORT,user $SUSER,pass $SPASS"
-aaa
+aa
 #parse dev PROFILE SRVMARK
 function parse_deploy()
 {
@@ -93,19 +92,18 @@ eval $3="${DPINFO[2]}"
 
 function parse_redis()
 {
-#echo $REDISFILE
-#$1  $2=IP           $3=PORT
+#$1 file $2=profile  $3=IP     $4=PORT
 #dev 192.168.143.112 6379
 #0   1		     2
 #echo "file $REDISFILE $1"
-local arr=(`getline $REDISFILE $1`)
+local arr=(`getline $1 $2`)
 #set -x
 #echo "redis info ${arr[@]}"
 if [ "${arr[0]}" = "$FAIL" ]; then
 	return $FAIL
 fi
-eval $2="${arr[1]}"
-eval $3="${arr[2]}"
+eval $3="${arr[1]}"
+eval $4="${arr[2]}"
 return 0
 }
 

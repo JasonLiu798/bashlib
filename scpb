@@ -1,0 +1,65 @@
+#!/bin/bash
+. $UBIN/lib.sh
+
+function usage()
+{
+echo "$ARG0 usage:
+	upload:	$ARG0 -u -f [file to upload] -s [serverpath+file/serverpath] -e \"[not upload server]\"
+	download: $ARG0 -d -f [file to download to] -s [serverpath+file]"
+}
+
+if [ $# -eq 0 ]; then
+	usage; exit;
+fi
+
+METHOD=$UP
+UP_PATH=/data
+while getopts hudf:s:e: opts
+do
+	case $opts in
+	h) usage; exit 0 ;;
+	u) METHOD=$UP;;
+	d) METHOD=$DOWN;;
+	f)
+	if [ "$OPTARG" = "" ]; then
+		echo "filename null" ; usage; exit;
+	fi
+	LOCAL_FILE=$OPTARG ;;
+	s) UP_PATH=$OPTARG ;;
+	e)
+	if [ "$OPTARG" != "" ]; then
+		EXCLUDE_SRV=$OPTARG
+	fi
+	esac
+done
+
+
+#dp113 192.168.143.113 22 work work
+#0     1               2  3    4
+
+#LC_FILENAME=`get_filename $`
+#echo "Filename $FILE_NAME"
+
+cat $SRVFILE|while read line
+do
+        resisempty=`isempty $line`
+        if [ "$resisempty" = "true" ]; then
+                continue
+        fi
+        declare -a params=($line)
+	echo $EXCLUDE_SRV| grep ${params[0]}
+	if [ $? -eq 0 ]; then
+		echoinfo "srv ${params[0]} excluded!"
+		continue
+	fi
+        echo "IP:${params[1]} PORT:${params[2]} USER:${params[3]} PASS:${params[4]}"
+	if [ "$METHOD" == "$UP" ]; then
+		set -x; scp -P ${params[2]} $LOCAL_FILE ${params[3]}@${params[1]}:$UP_PATH ; set +x;
+	elif [ "$METHOD" == "$DOWN" ]; then
+		set -x; scp -P ${params[2]} ${params[3]}@${params[1]}:$UP_PATH $LOCAL_FILE ; set +x;
+	else
+		echo "$ARG0,unknown operation type"
+	fi
+done
+
+exit 0

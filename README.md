@@ -1,7 +1,7 @@
-#use full scripts
-this  repositoriy contain some useful bash scripts and functions
+#bash script lib
+This  repositoriy contain some useful bash scripts and functions.
 
-#bashrc
+#DIR-bashrc
 ##.bash_alias*
 contain some useful command alias
 ##.bash_path*
@@ -9,15 +9,15 @@ contain some variable of path
 ##.bashrc*
 my bashrc setting
 ##cmdrc.bat
-windows cmd auto run script
-usage,change `D:\yp\project\shell\share\bashrc\cmdrc.bat` to your `cmdrc.bat` location,and run these command in your cmd.
+windows cmd auto run script         
+usage:change `D:\yp\project\shell\share\bashrc\cmdrc.bat` to your `cmdrc.bat` location,and run these command in your `cmd`.
 ```
-reg add "HKLM\Software\Microsoft\Command Processor" /v "AutoRun" /t REG_SZ /d "D:\yp\project\shell\share\bashrc\cmdrc.bat" /f
+reg add "HKLM\Software\Microsoft\Command Processor" /v "AutoRun" /t REG_SZ /d "D:\yp\project\shell\share\bashrc\win\cmdrc.bat" /f
 ```
-#*.init.sh
+##*.init.sh
 environment init
 
-#lib
+#DIR-lib
 ##const.sh
 some constant
 ##datafile.sh
@@ -59,6 +59,8 @@ read server.dat,generate ssh login alias
 `source ~/bin/lib.sh`
 ##bauth
 batch ssh-copy-id of servers in `~/bin/data/servers.dat`
+##bssh
+batch ssh execute command 
 ##scps
 super ssh,first you have run bauth,complete no password login
 download file: 
@@ -69,21 +71,28 @@ upload file:
     `$ARG0 file jmp:/data/home`
 upload file to default folder:  
     `$ARG0 file jmp`
-##db.sh
-mysql single sql execute tool.
+##scpb
+batch scp files
 ##dbs.sh
-mysql batch sql execute tool.
+mysql sql execute tool.
+##redis
+redis tool
+##swh
+swith host
 
-
-#dependency
-lib
-    mklib
-        ~/bin/data/servers.dat
-            bauth
-                scps
-    ~/bin/data/db.dat
-        db.sh
-        dbs.sh
+#DIR-dependency
+* lib
+    - mklib
+    - ~/bin/data/servers.dat
+        * bauth
+            - bssh
+            - scps
+            - scpb
+    - ~/bin/data/db.dat
+        + db.sh
+        + dbs.sh
+    - ~/bin/data/redis.dat
+        + redis
 
 
 

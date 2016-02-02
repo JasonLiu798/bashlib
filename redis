@@ -1,0 +1,49 @@
+#!/bin/bash
+. $UBIN/lib.sh
+
+function usage()
+{
+echo "$ARG0 usage:
+	$ARG0 srv \"cmd\""
+}
+
+SRV=dev
+CMD=info
+BATCH=$NO
+if [ $# -eq 0 ]; then
+	cat $REDISFILE
+	exit
+fi
+while getopts ls:c:bh opts
+do
+	case $opts in
+	l) cat $REDISFILE;	exit;;
+	#echo `cat $REDISFILE|awk '{ printf("%s:%s ",$1,$2); }'`
+	s) 
+	if [ "$OPTARG" != "" ]; then
+		SRV=$OPTARG
+	fi
+	;;
+	c)
+	if [ "$OPTARG" != "" ]; then
+		CMD=$OPTARG
+	fi
+	;;
+	b) BATCH=$YES ;;
+	h) usage ; exit ;;
+	esac
+done
+
+parse_redis $SRV IP PORT
+RES=$?
+if [ "$RES" = "$FAIL" ]; then
+	echo "read server config file fail"; usage; exit $FAIL;
+fi
+if [ "$BATCH" = "$YES" ]; then
+	cat $CMDFILE | redis-cli -h $IP -p $PORT
+else
+	echo "$CMD" | redis-cli -h $IP -p $PORT
+fi
+
+#-a $password --pipe
+

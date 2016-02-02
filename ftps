@@ -1,0 +1,22 @@
+#!/bin/bash
+
+HOST="192.168.137.11"
+USER="ftpuser"
+PASS=""
+METHOD=$1
+FILE=$2
+
+source $UBIN/lib.sh
+
+set -x
+
+if [ $# -eq 1 ]; then
+        ftplist $HOST $USER $PASS
+elif [ $# -eq 2 ]; then
+        ftpgetput $HOST $USER $PASS $METHOD $FILE
+else
+	echo "$0 must have one parameter at lestest!
+		$0 
+	"
+fi
+

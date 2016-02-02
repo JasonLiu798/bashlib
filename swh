@@ -1,0 +1,75 @@
+#!/bin/bash
+#swh.sh
+#versions:now[comm], test1,test2...
+#swh example:swh test1;check comm version; mv comm->version; mv test1->now
+
+NOW_VER=`cat /cygdrive/c/Windows/System32/drivers/etc/hosts|grep version|awk '{print $2}'`
+TGT_VER=$1
+
+COMM_FILE=hosts.comm
+TEST163_FILE=hosts.test163
+TEST168_FILE=hosts.test168
+TEST171_FILE=hosts.test171
+DEV_FILE=hosts.dev
+REG_FILE=hosts.reg50
+YFB_FILE=hosts.yfb
+DD_FILE=hosts.dd76
+X77_FILE=hosts.x77
+
+if [ $# -lt 1 ]; then
+        echo 'switch host must have one parameter,$1 is the target version,example:'
+	echo 'swh + comm/t163/t168/t171/reg50/yfb/dd76/x77'
+        exit
+fi
+
+if [ "$1" == "-l" ]; then
+	echo "now version: $NOW_VER"
+	exit
+fi
+
+if [ "$NOW_VER" == "$TGT_VER" ]; then
+	echo "source and target same! now version: $NOW_VER ,target version: $TGT_VER "
+	exit
+fi
+
+#backup now host
+function getfile()
+{
+if [ "$1" == "comm" ]; then
+	TGT=$COMM_FILE
+elif [ "$1" == "t163" ]; then
+	TGT=$TEST163_FILE
+elif [ "$1" == "t168" ]; then
+	TGT=$TEST168_FILE
+elif [ "$1" == "t171" ]; then
+	TGT=$TEST171_FILE
+elif [ "$1" == "dev" ]; then
+	TGT=$DEV_FILE
+elif [ "$1" == "reg50" ]; then
+	TGT=$REG_FILE
+elif [ "$1" == "yfb" ]; then
+	TGT=$YFB_FILE
+elif [ "$1" == "dd76" ]; then
+	TGT=$DD_FILE
+elif [ "$1" == "x77" ]; then
+	TGT=$X77_FILE
+else
+	echo 'unknown version $1'
+	exit
+fi
+echo $TGT
+}
+
+TGT_FILE=`getfile $NOW_VER`
+
+
+set -x
+mv /cygdrive/c/Windows/System32/drivers/etc/hosts /cygdrive/c/Windows/System32/drivers/etc/$TGT_FILE
+
+#change to new file
+SRC_FILE=`getfile $TGT_VER`
+
+mv /cygdrive/c/Windows/System32/drivers/etc/$SRC_FILE /cygdrive/c/Windows/System32/drivers/etc/hosts
+
+
+
