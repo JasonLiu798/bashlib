@@ -60,7 +60,7 @@ if [ "$CHK" != "1" ]; then
 	echo "$0 ,no server match $SRV ,add $SRV to $SRVFILE "; usage; exit $FAIL;
 fi
 
-parse_server $SRV IP PORT SUSER SPASS
+parse_server $SRVFILE $SRV IP PORT SUSER SPASS
 if [ "$?" = "$FAIL" ]; then
 	echo "parse server file fail"; usage; exit $FAIL;
 fi

@@ -36,25 +36,13 @@ alias c='echo -e "\E[2J"'
 set -o ignoreeof
 
 #export PS1="\[\033]0;$PWD\007\]
-PHIP=`ipconfig|gu|grep 以太网适配器 -A 4|grep IPv4|awk '{print $16}'`
+PHIP=`ipconfig|gu|grep '以太网适配器 本地连接:' -A 4|grep IPv4|awk '{print $16}'`
 #PHIP=`ipconfig|gu|grep 本地连接 -A 4|grep IPv4|awk '{print $14}'`
 export PS1="\[\033]0;$PHIP\007\]
 \[\033[32m\][\D{%Y-%m-%d %H:%M.%S}]\[\033[0m\]  \[\033[32m\]\w\[\033[0m\]
-\[\033[32m\][\u.$PHIP]\[\033[0m\]  "
+\[\033[32m\][\u.$PHIP]\[\033[0m\]"
 #\[\033[32m\][\u@`/sbin/ifconfig eth0 | sed -n '0,/^\s\+inet addr:\([0-9]\+[.][0-9]\+[.][0-9]\    +[.][0-9]\+\).*$/s//\1/p'`]\[\033[0m\]  "
 #export PS1="\[\e]2;\u@\H \w\a\e[32;1m\]>\[\e[0m\]"
-
-: << aaa
-#redis
-alias dredis='redis-cli -h 192.168.143.112 -p 6379'
-alias dfavredis='redis-cli -h 192.168.143.242 -p 6386'
-alias t7redis='redis-cli -h 192.168.143.167 -p 6379'
-alias t7favredis='redis-cli -h 192.168.143.167 -p 6382'
-alias rredis='redis-cli -h 192.168.143.233 -p 6388'
-alias rfavredis='redis-cli -h 192.168.143.233 -p 6386'
-#alias lredis='redis-cli -h 192.168.137.240 -p 6379'
-aaa
-
 
 #[[ "$-" != *i* ]] && return
 

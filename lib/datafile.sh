@@ -67,9 +67,9 @@ if [ "${arr[0]}" = "$FAIL" ]; then
 	return $FAIL
 fi
 #echo "srvinfo $SRVINFO"
-eval $3="${arr[1]}"
-eval $4="${arr[2]}"
-eval $5="${arr[3]}"
+eval $3='${arr[1]}'
+eval $4='${arr[2]}'
+eval $5='${arr[3]}'
 eval $6='${arr[4]}'
 return 0
 }

@@ -9,8 +9,9 @@ rm -f $BASHRC
 cat $SHP/bin/srv/.bashrc >> $BASHRC
 cat $SHP/share/bashrc/moba/.bash_alias >> $BASHRC
 
-#gen_bash.sh -p ol -s
+# gen_bash.sh -p ol -s
 cat $SHP/bin/srv/.bash_ssh >> $BASHRC
+dos2unix $BASHRC
 
 TMPDIR=$TMP/bin
 rm -rf $TMPDIR
@@ -35,6 +36,7 @@ done
 rm $TMP/srv.tar.gz
 set -x
 cd /tmp
+dos2unix bin/*
 tar zpcvf srv.tar.gz bin .bashrc
 rm -rf bin
 rm -rf .bashrc
