@@ -39,26 +39,18 @@ EOF
 
 
 
-!<<aaa
-#lftp
-#!bin/bash
-if [ $# -lt 2 ]; then
-        echo 'FTP must have two parameter!'
-        exit
-fi
+!<<lftpexample
 METHOD=$1
 FILE=$2
-
-HOST="10.185.234.139"
-USER="ftpuser"
-PASS="Xxzx2013@)!#"
+HOST=""
+USER=""
+PASS=""
 #LCD="/d/"
 RCD="code"
 lftp <<EOF
 open ftp://$USER:$PASS@$HOST
 $METHOD -o $FILE
-EOF
+lftpexample
 
-aaa
 #echo "`date +%Y-%m-%d %H:%M:%S` FTP $METHOD $FILE"
 #echo "`date +%Y-%m-%d %H:%M:%S` FTP END"

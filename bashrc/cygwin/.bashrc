@@ -27,7 +27,7 @@ if [ $sshdcnt -lt $sshdstartcnt ]; then
 fi
 
 # gbk -> utf-8
-alias gu='iconv -f gbk -t utf-8'
+
 alias ifconfig='ipconfig|gu'
 alias c='echo -e "\E[2J"'
 

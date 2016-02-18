@@ -1,11 +1,12 @@
 #!/bin/bash
 
+#ip to location
 function ip2locate()
 {
 #$1=ip
 res=`wget -q -O- http://ip.ws.126.net/ipquery?ip="$1" | iconv -f gbk -t utf-8 `
 #|native2ascii -reverse|iconv -f gbk -t utf-8`
-
+!<<aaa
 #taobao
 #http://ip.taobao.com/service/getIpInfo.php?ip=
 #{"code":0,"data":{"country":"\u4e2d\u56fd","country_id":"CN","area":"\u534e\u4e2d","area_id":"400000","region":"\u6cb3\u5357\u7701","region_id":"410000","city":"\u90d1\u5dde\u5e02","city_id":"410100","county":"","county_id":"-1","isp":"\u7535\u4fe1","isp_id":"10
@@ -20,7 +21,7 @@ res=`wget -q -O- http://ip.ws.126.net/ipquery?ip="$1" | iconv -f gbk -t utf-8 `
 
 echo $res
 }
-
+aaa
 
 #echo `ip2locate $1`
 #echo $a

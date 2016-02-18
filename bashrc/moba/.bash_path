@@ -32,6 +32,7 @@ export TR=$PY/tornado
 export LT=$PRJ/leetcode
 export PHP=$PRJ/php
 export DOC=$YP/documents
+export DOCL=$D/documents
 export WWW=$TOOLS/xampp/htdocs
 #other bin
 export THIRDBIN=$SHP/useful-scripts

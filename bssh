@@ -1,6 +1,5 @@
 #!/bin/bash
-#import str
-source $UBIN/lib.sh
+source ~/bin/lib.sh
 
 #SRVFILE=$1
 CMD=$1
@@ -8,7 +7,7 @@ CMD=$1
 #dp113 192.168.143.113 22 work work
 #0     1               2  3    4
 if [ $# -lt 1 ]; then
-echo "$0 must have two parameter 
+echo "$0 must have two parameter
 example:
 	$0 [server_file] [command] "
 	exit;

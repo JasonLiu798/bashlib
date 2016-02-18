@@ -9,19 +9,22 @@ ln -sfv /drives/f /f
 
 #run gen_bash_srv > .bash_srv
 #init bashrc
-prj=/d/yp/project/
+prj=/d/yp/project
 shp=$prj/shell
-rcpath=$shp/share/bashrc
-for rcfile in `ls -a $rcpath/moba|grep -v '/'`
+rcroot_path=$shp/share/bashrc
+rcmoba_path=$rcroot_path/moba
+
+for rcfile in `ls -a $rcmoba_path|grep -v '/'`
 do
     #filter ~
     echo $rcfile
     set -x
-    ln -sfv $rcpath/$rcfile ~/$rcfile
+    ln -sfv $rcmoba_path/$rcfile ~/$rcfile
     set +x
 done
+
 #vimrc
-ln -sfv $rcpath/.vimrc ~/.vimrc
+ln -sfv $rcroot_path/.vimrc ~/.vimrc
 #bin
 ln -sfv $shp/bin ~/bin
 #lib
@@ -38,10 +41,4 @@ ln -sfv /opt/mysql /d/tools/MySQL/MySQL5.6
 apt-get install file
 apt-get install tig
 
-!<<aaa
-#filter ~
-    bidx=`expr index $rcfile "~"`
-    if [ $bidx -gt 0 ];then
-        rcfile=`expr substr "$rcfile" 1 $((bidx-1))`
-    fi
-aaa
+

@@ -1,5 +1,4 @@
 #!/bin/bash
-#. $BLIB/const.sh
 
 function showfile()
 {
@@ -9,7 +8,6 @@ local PARAM=$3
 #echo "$FILE"
 cat $FILE|grep -C $PARAM $GREP_TXT
 }
-
 
 function exchange_file()
 {
@@ -73,12 +71,14 @@ eval $5='${arr[3]}'
 eval $6='${arr[4]}'
 return 0
 }
+
 #set -x
 !<<aa
 parse_server /d/yp/project/shell/bin/data/srv_ol.dat 9 IP PORT SUSER SPASS
 echo $?
 echo "ip $IP,port $PORT,user $SUSER,pass $SPASS"
 aa
+
 #parse dev PROFILE SRVMARK
 function parse_deploy()
 {
@@ -123,5 +123,3 @@ aaa
 #is_infile $DPFILE devd
 #echo $?
 #RES=`getline /d/yp/project/member/db.dat devsd`
-
-

@@ -1,5 +1,5 @@
 #!/bin/bash
-. $BLIB/lib.sh
+. ~/bin/lib.sh
 #name  ip port user passwd
 #0     1  2    3    4
 

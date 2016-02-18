@@ -21,6 +21,7 @@ psid() {
   pids="$(ps axo pid,user,command | grep -v grep | grep -i ${pro} | awk '{print $1}')";   # get pids
   complete -W "${pids}" kill9     # make a completion list for kk
 }
+alias gu='iconv -f gbk -t utf-8'
 
 #file system
 alias ls='ls -hF --color=tty'

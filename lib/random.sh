@@ -2,7 +2,7 @@
 
 function random_num()
 {
-local min=$1  
+local min=$1
 if [ "$min" = "" ];then
 	min=0
 fi
@@ -14,11 +14,10 @@ else
 fi
 #echo "min $min max $max"
 #set -x
-local num=$(cat /dev/urandom | head -n 10 | cksum | awk -F ' ' '{print $1}')  
+local num=$(cat /dev/urandom | head -n 10 | cksum | awk -F ' ' '{print $1}')
 #echo $num
-echo $(($num%$max+$min))  
+echo $(($num%$max+$min))
 }
-
 
 function random_ip()
 {
@@ -33,7 +32,6 @@ echo ${WIP}
 }
 
 #echo `random_num 0 254`
-
 function random_num1()
 {
 local min=$1
@@ -46,7 +44,7 @@ if [ "$max" = "" ];then
 else
         max=$(($2-$min+1))
 fi
-local num=$(($RANDOM+1000000000)) #增加一个10位的数再求余  
+local num=$(($RANDOM+1000000000)) #增加一个10位的数再求余
 echo $(($num%$max+$min))
 }
 

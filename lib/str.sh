@@ -57,7 +57,7 @@ function str_toupper()
 {
     echo $(echo $1 | tr '[a-z]' '[A-Z]')
 }
- 
+
 #将字符串中字符全部转换为小写
 #输入：字符串
 function str_tolower()
@@ -106,6 +106,15 @@ fi
 echo $res
 }
 
+!<<aaa
+function removelast(){
+    #filter ~
+    bidx=`expr index $rcfile "~"`
+    if [ $bidx -gt 0 ];then
+        rcfile=`expr substr "$rcfile" 1 $((bidx-1))`
+    fi
+}
+aaa
 #TEST
 #a=`del_slash_in_filename "dsfsdf/sdfds"`
 #echo "a:" $a
