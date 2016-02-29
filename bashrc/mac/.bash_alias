@@ -1,5 +1,4 @@
 # .bashrc
-#vi
 alias vi='vim'
 alias lvi="vim -c \"normal '0\"" #latest used
 alias c='clear'
@@ -9,6 +8,24 @@ alias hg='history|grep'
 alias netp='netstat -tulanp'
 alias tf='tail -f '
 alias hl='grep -P --color -C 10000' #highlight
+
+
+alias nginx.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
+alias nginx.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
+alias nginx.restart='nginx.stop && nginx.start'
+alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
+alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
+alias php-fpm.restart='php-fpm.stop && php-fpm.start'
+alias redis.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
+alias redis.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
+alias redis.restart='redis.stop && redis.start'
+alias memcached.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist"
+alias memcached.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist"
+alias memcached.restart='memcached.stop && memcached.start'
+
+#alias ls='ls -F --color=auto'
+alias grep='grep --color=auto'
+alias ee='emacsclient -t'
 
 #system
 alias psg='ps aux | grep -v grep | grep -i --color'

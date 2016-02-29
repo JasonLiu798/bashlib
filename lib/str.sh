@@ -106,15 +106,14 @@ fi
 echo $res
 }
 
-!<<aaa
+
 function removelast(){
-    #filter ~
+    filter ~
     bidx=`expr index $rcfile "~"`
     if [ $bidx -gt 0 ];then
         rcfile=`expr substr "$rcfile" 1 $((bidx-1))`
     fi
 }
-aaa
 #TEST
 #a=`del_slash_in_filename "dsfsdf/sdfds"`
 #echo "a:" $a

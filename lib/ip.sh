@@ -5,6 +5,8 @@ function ip2locate()
 {
 #$1=ip
 res=`wget -q -O- http://ip.ws.126.net/ipquery?ip="$1" | iconv -f gbk -t utf-8 `
+}
+
 #|native2ascii -reverse|iconv -f gbk -t utf-8`
 !<<aaa
 #taobao

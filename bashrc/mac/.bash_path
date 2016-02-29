@@ -15,14 +15,16 @@ export SETUP=/opt/setups
 export BAK=$YP/BACKUP
 #project
 export PRJ=$YP/project
+export PRJL=/opt/project
 export PY=$PRJ/python
 export RB=$PRJ/ruby
 export BLOG=$RB/JasonLiu798.github.io/_posts
 # export TR=$PY/tornado
-export LT=$PRJ/leetcode
+
 export PHP=$PRJ/php
-export DOC=$YP/documents
-export DOCL=/opt/documents
+# export DOC=$YP/documents
+export DOC=/opt/documents
+export LT=$PRJL/leetcode
 export WWW=/private/var/www
 #jp
 export MEM=$PRJ/member
