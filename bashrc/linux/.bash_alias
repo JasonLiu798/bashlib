@@ -1,4 +1,3 @@
-# .bashrc
 #vi
 alias vi='vim'
 alias lvi="vim -c \"normal '0\"" #latest used

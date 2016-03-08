@@ -1,7 +1,14 @@
 #!/bin/bash
-
 source ~/bin/lib.sh
 
+!<<note
+generate .bashrc
+include
+    .bashrc_raw
+    .bash_ssh [run gen_bash.sh -p ol/lc]
+    .bash_alias
+    .bash_path
+note
 
 #after bauth,generate .bashrc for server
 BASHRC=$TMP/.bashrc
