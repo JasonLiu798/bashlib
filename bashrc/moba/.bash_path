@@ -35,14 +35,7 @@ export WWW=$TOOLS/xampp/htdocs
 #other bin
 export THIRDBIN=$SHP/useful-scripts
 export SHAREBIN=$SHP/share
-#jp
-export MEM=$PRJ/member
-export MEMX=$PRJ/member-xuanyuan
-export MEMP="$MEMX/member-processor-xy1.0"
-export MEMD="$MEMX/member-domain-xy1.0"
 
-export SPI=$PRJ/spi
-export JPX=$PRJ/service-proxy
 
 #java
 JAVA_HOME=/opt/java
