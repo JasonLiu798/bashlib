@@ -9,6 +9,7 @@ alias netp='netstat -tulanp'
 alias tf='tail -f '
 alias hl='grep -P --color -C 10000' #highlight
 
+alias dnsc='sudo dscacheutil -flushcache'
 
 alias nginx.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
 alias nginx.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
