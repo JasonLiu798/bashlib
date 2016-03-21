@@ -1,13 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-if [ -f "${HOME}/.bash_alias" ]; then
-        . "${HOME}/.bash_alias"
-fi
-if [ -f "${HOME}/.bash_path" ]; then
-        . "${HOME}/.bash_path"
-fi
-
 #ZSH_THEME="aussiegeek"
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="agnoster"

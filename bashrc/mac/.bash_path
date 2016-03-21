@@ -15,21 +15,37 @@ export SETUP=/opt/setups
 export BAK=$YP/BACKUP
 #project
 export PRJ=$YP/project
-export PRJL=/opt/project
+export PRJL=/opt/projectL
 export PY=$PRJ/python
+export PYTHONPATH=$PY
 export RB=$PRJ/ruby
 export BLOG=$RB/JasonLiu798.github.io/_posts
 # export TR=$PY/tornado
 
-export PHP=$PRJ/php
-# export DOC=$YP/documents
+#document
 export DOC=/opt/documents
+
+#shell project
+export SHP=$PRJ/shell
+export SHPL=$PRJL/shell
+#python project
+export PY=$PRJ/python
+#php project
+export PHP=$PRJ/php
+
+#algorithm
 export LT=$PRJL/leetcode
+
+
+#deploy
 export WWW=/private/var/www
-#jp
-export MEM=$PRJ/member
+
+
+#work project
+export MEM=$PRJL/member
 export SPI=$PRJ/spi
 export JPX=$PRJ/service-proxy
+
 #server
 export NSITE=/usr/local/etc/nginx/sites-available
 export NCONF=/usr/local/etc/nginx

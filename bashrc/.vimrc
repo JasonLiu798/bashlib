@@ -10,7 +10,7 @@ syntax on
 set background=dark
 "~/.vim/colors/
 "https://github.com/altercation/vim-colors-solarized
-colorscheme solarized
+"colorscheme solarized
 "grb256 ruby https://github.com/garybernhardt/dotfiles/blob/master/.vim/colors/grb256.vim
 
 "可以在buffer的任何地方使用鼠标
