@@ -1,4 +1,3 @@
-# .bashrc
 alias vi='vim'
 alias lvi="vim -c \"normal '0\"" #latest used
 alias c='clear'
@@ -9,6 +8,13 @@ alias netp='netstat -tulanp'
 alias tf='tail -f '
 alias hl='grep -P --color -C 10000' #highlight
 
+#maven
+alias mvncp='mvn clean package'
+alias mvnci='mvn clean install'
+#git
+alias gcm='git commit -a -m'
+
+#dns clean
 alias dnsc='sudo dscacheutil -flushcache'
 
 alias nginx.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'

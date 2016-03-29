@@ -1,0 +1,26 @@
+
+IP=`ifconfig|grep en0 -A 4|grep broadcast|awk '{print $2}'`
+#PS1='\[\033]0;\h-$IP\007\]
+
+if [ ${#PWD} -gt 17 ];then
+    PWDS=...${PWD:0-16}
+else
+    PWDS=$PWD
+fi
+
+
+#PS1='\[\033]0;$IP\007\]
+#\[\033[36m\][\D{%Y-%m-%d %H:%M.%S}]\[\033[0m\]  \[\033[36m\]\w\[\033[0m\]
+#\[\033[36m\][\u.\h]\[\033[0m\]  '
+
+PS1='\[\033]0;$PWDS\007\]
+\[\033[36m\][\D{%Y-%m-%d %H:%M.%S}]\[\033[0m\]  \[\033[36m\]\w\[\033[0m\]
+\[\033[36m\][\u.\h]\[\033[0m\]  '
+
+PROMPT_COMMAND='pwdtmp=`pwd`
+if [ ${#pwdtmp} -gt 17 ]; then
+    PWDS=...${pwdtmp:0-16}
+else
+    PWDS=$pwdtmp
+fi
+'

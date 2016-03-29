@@ -14,7 +14,8 @@ if [ $# -lt 1 ]; then
     exit;
 fi
 
-TGTFILE=/d/lib.sh
+!<<aaa
+# TGTFILE=/d/lib.sh
 rm -f $TGTFILE
 while getopts sd opts
 do
@@ -37,5 +38,5 @@ if [ "$DF" == "Y" ];then
     cat $BLIB/datafile.sh >> $TGTFILE
     set +x
 fi
-
+aaa
 
