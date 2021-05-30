@@ -1,6 +1,8 @@
 #!/bin/bash
-. $UBIN/lib.sh
 
+. ./lib.sh
+
+# ./gen_bash.sh -p 
 function usage(){
     echo "usage:
         $ARG0 -p [ol/lc] -r/-s
@@ -30,6 +32,7 @@ fi
 if [ "$profile" = "" ];then
     profile="lc"
 fi
+
 filearrname=${profile_arr[$profile]}
 tgtfilename=${TPFILE[$MK]}
 tmptgtfile=$TMP/$tgtfilename
